@@ -1,10 +1,24 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
-
-import static java.lang.System.*;
+//JAVA 11
 
 public class StackAndHeap {
 
+    private int primitiveInTheHeap = 100;
+    private String stringOnTheHeap = "hello";
+
+    public String toString() {
+        return "StackAndHeap{" +
+                "primitiveInTheHeap=" + primitiveInTheHeap +
+                ", stringOnTheHeap='" + stringOnTheHeap + '\'' +
+                '}';
+    }
+
     public static void main(String... args) {
-        out.println("Hello World");
+        int localVariableInTheStack = 40;
+        Integer boxedLocalVariableInTheHeap = 50;
+        String localStringInTheHeap = "world";
+
+        StackAndHeap stackAndHeap = new StackAndHeap();
+        System.out.println(stackAndHeap);
     }
 }
