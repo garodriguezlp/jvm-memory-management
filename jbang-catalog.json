@@ -1,6 +1,6 @@
 {
     "aliases": {
-        "StandAndHeap": {
+        "StackAndHeap": {
             "script-ref": "StackAndHeap.java"
         }
     }
