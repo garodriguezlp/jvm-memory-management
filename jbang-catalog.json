@@ -1,7 +1,9 @@
 {
+    "catalogs": {},
     "aliases": {
         "StackAndHeap": {
             "script-ref": "StackAndHeap.java"
         }
-    }
+    },
+    "templates": {}
 }
