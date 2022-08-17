@@ -26,44 +26,44 @@ you don't want to install it.
 > The following oneliners assume that you have the `idea` binary in your `$PATH`. If `vscode` is your preferred editor, you can
 use `--open=code` instead
 
-- Powershell:
-
-    ```ps1
-    iex "& { $(iwr https://ps.jbang.dev) } edit --open=idea StackAndHeap@garodriguezlp/jvm-memory-management"
-    ```
-
-- GitBash/cygwin/mingwin/WSL:
-
-    ```bash
-    curl -ls https://sh.jbang.dev | bash -s - edit --open=idea StackAndHeap@garodriguezlp/jvm-memory-management
-    ```
+  ```bash
+  jbang edit --open=idea StackAndHeap@garodriguezlp/jvm-memory-management
+  ```
 
 ## Intro into GC
 
-### Running with Java 8
+- Running it with Java 8
 
-- Powershell:
+  ```bash
+  jbang run --java 8 --verbose IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```
 
-    ```ps1
-    iex "& { $(iwr https://ps.jbang.dev) } run --java 8 --verbose --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management"
-    ```
+- Running it with Java 11
 
-- GitBash/cygwin/mingwin/WSL:
+  ```bash
+  jbang run --java 11 --verbose IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```
 
-    ```bash
-    curl -ls https://sh.jbang.dev | bash -s - run --java 8 --verbose --java-options="-Xmx127m" IntroGarbageCollection@garodriguezlp/jvm-memory-management
-    ```
+- Running it with Java 8 limiting max heap
 
-### Running with Java 11
+  ```bash
+  jbang run --java 8 --verbose --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```
 
-- Powershell:
+- Running it with Java 11 limiting max heap
 
-    ```ps1
-    iex "& { $(iwr https://ps.jbang.dev) } run --java 11 --verbose --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management"
-    ```
+  ```bash
+  jbang run --java 11 --verbose --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```
 
-- GitBash/cygwin/mingwin/WSL:
+- Running it with Java 8 limiting max and min heap
 
-    ```bash
-    curl -ls https://sh.jbang.dev | bash -s - run --java 11 --verbose --java-options="-Xmx127m" IntroGarbageCollection@garodriguezlp/jvm-memory-management
-    ```
+  ```bash
+  jbang run --java 8 --verbose --java-options='-Xms127m' --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```
+
+- Running it with Java 11 limiting max heap
+
+  ```bash
+  jbang run --java 11 --verbose --java-options='-Xms127m' --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```
