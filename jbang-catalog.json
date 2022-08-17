@@ -3,6 +3,9 @@
     "aliases": {
         "StackAndHeap": {
             "script-ref": "StackAndHeap.java"
+        },
+        "IntroGarbageCollection": {
+            "script-ref": "IntroGarbageCollection.java"
         }
     },
     "templates": {}

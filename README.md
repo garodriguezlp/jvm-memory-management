@@ -37,3 +37,33 @@ use `--open=code` instead
     ```bash
     curl -ls https://sh.jbang.dev | bash -s - edit --open=idea StackAndHeap@garodriguezlp/jvm-memory-management
     ```
+
+## Intro into GC
+
+### Running with Java 8
+
+- Powershell:
+
+    ```ps1
+    iex "& { $(iwr https://ps.jbang.dev) } run --java 8 --verbose --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management"
+    ```
+
+- GitBash/cygwin/mingwin/WSL:
+
+    ```bash
+    curl -ls https://sh.jbang.dev | bash -s - run --java 8 --verbose --java-options="-Xmx127m" IntroGarbageCollection@garodriguezlp/jvm-memory-management
+    ```
+
+### Running with Java 11
+
+- Powershell:
+
+    ```ps1
+    iex "& { $(iwr https://ps.jbang.dev) } run --java 11 --verbose --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management"
+    ```
+
+- GitBash/cygwin/mingwin/WSL:
+
+    ```bash
+    curl -ls https://sh.jbang.dev | bash -s - run --java 11 --verbose --java-options="-Xmx127m" IntroGarbageCollection@garodriguezlp/jvm-memory-management
+    ```
