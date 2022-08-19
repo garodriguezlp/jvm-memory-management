@@ -1,41 +1,66 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
+//DEPS info.picocli:picocli:4.5.0
 
-import java.util.ArrayList;
+
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.stream.IntStream;
 
 import static java.lang.System.out;
 import static java.util.stream.Collectors.toList;
 
-public class IntroGarbageCollection {
+@Command(name = "IntroGarbageCollection", mixinStandardHelpOptions = true, version = "IntroGarbageCollection 0.1",
+        description = "IntroGarbageCollection made with jbang")
+class IntroGarbageCollection implements Callable<Integer> {
 
-    public static void main(String... args) throws InterruptedException {
+    @Option(names = {"-n", "--number"},
+            description = "number of iterations",
+            required = true,
+            defaultValue = "60")
+    private int iterations;
+
+    @Option(names = {"-p", "--pause"},
+            description = "pause time",
+            required = true,
+            defaultValue = "2000")
+    private int pause;
+
+    public static void main(String... args) {
+        int exitCode = new CommandLine(new IntroGarbageCollection()).execute(args);
+        System.exit(exitCode);
+    }
+
+    @Override
+    public Integer call() throws Exception {
 
         out.println("free memory at start: " + getFreeMemoryInMegabytes() + "M");
 
-        List<MyClass> myClasses = IntStream.range(0, 1_000_000).boxed()
-                .map(i -> new MyClass())
-                .collect(toList());
+        for (int i = 0; i < iterations; i++) {
 
-        out.println("free memory after creating 1.000.000 MyClass instances: " + getFreeMemoryInMegabytes() + "M");
+            // create a list of MyClass objects
+            int randomNumber = (int) (Math.random() * (1_000_000 - 100_000) + 100_000);
+            List<MyClass> myClasses = IntStream.range(0, randomNumber)
+                    .boxed()
+                    .map(n -> new MyClass())
+                    .collect(toList());
 
-        myClasses = new ArrayList<>();
-        out.println("free memory after clearing myClasses: " + getFreeMemoryInMegabytes() + "M");
+            // print the free memory
+            out.println("free memory after creating [" + randomNumber + "] objects: " + getFreeMemoryInMegabytes() + "M");
 
-        out.println("sleeping for 5 seconds");
-        Thread.sleep(5000);
+            // sleep for the pause time
+            Thread.sleep(pause);
+        }
 
-        out.println("free memory after sleeping for 5 second: " + getFreeMemoryInMegabytes() + "M");
-
-        myClasses = IntStream.range(0, 500_000).boxed()
-                .map(i -> new MyClass())
-                .collect(toList());
-
-        out.println("free memory after creating 500.000 MyClass instances: " + getFreeMemoryInMegabytes() + "M");
-
+        // Please, never do this in production code!
         System.gc();
 
         out.println("free memory after gc: " + getFreeMemoryInMegabytes() + "M");
+
+        return 0;
     }
 
     private static long getFreeMemoryInMegabytes() {
@@ -51,8 +76,5 @@ public class IntroGarbageCollection {
         long aaaaaa;
         long aaaaaaa;
         long aaaaaaaa;
-        long aaaaaaaaa;
-        long aaaaaaaaaa;
     }
-
 }

@@ -26,44 +26,34 @@ you don't want to install it.
 > The following oneliners assume that you have the `idea` binary in your `$PATH`. If `vscode` is your preferred editor, you can
 use `--open=code` instead
 
-  ```bash
+  ```ps1
   jbang edit --open=idea StackAndHeap@garodriguezlp/jvm-memory-management
   ```
 
 ## Intro into GC
 
+> If you want to know what's `jbang` doing under the hood, you can use the `--verbose` flag
+
 - Running it with Java 8
 
-  ```bash
-  jbang run --java 8 --verbose IntroGarbageCollection@garodriguezlp/jvm-memory-management
-  ```
-
-- Running it with Java 11
-
-  ```bash
-  jbang run --java 11 --verbose IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```ps1
+  jbang run --java 8 IntroGarbageCollection@garodriguezlp/jvm-memory-management
   ```
 
 - Running it with Java 8 limiting max heap
 
-  ```bash
-  jbang run --java 8 --verbose --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
-  ```
-
-- Running it with Java 11 limiting max heap
-
-  ```bash
-  jbang run --java 11 --verbose --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```ps1
+  jbang run --java 8 --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
   ```
 
 - Running it with Java 8 limiting max and min heap
 
-  ```bash
-  jbang run --java 8 --verbose --java-options='-Xms127m' --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```ps1
+  jbang run --java 8 --java-options='-Xms127m' --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
   ```
 
-- Running it with Java 11 limiting max heap
+- Running `visualvm` could be executed like this if `$JAVA_HOME` and `$VISUALVM_HOME` environment variables are properly set
 
-  ```bash
-  jbang run --java 11 --verbose --java-options='-Xms127m' --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  ```ps1
+  & $env:VISUALVM_HOME\bin\visualvm.exe --jdkhome $env:JAVA_HOME --console suppress
   ```
