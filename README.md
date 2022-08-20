@@ -57,3 +57,23 @@ use `--open=code` instead
   ```ps1
   & $env:VISUALVM_HOME\bin\visualvm.exe --jdkhome $env:JAVA_HOME --console suppress
   ```
+
+## Memory Leak
+
+- Run the following `jbang` powered class
+
+  ```ps1
+  jbang run --java 11 --java-options='-Xmx256m' --java-options='-XX:+HeapDumpOnOutOfMemoryError' MemoryLeak@garodriguezlp/jvm-memory-management
+  ```
+
+- Open `visualvm` and connect to the process
+
+  ```ps1
+  & $env:VISUALVM_HOME\bin\visualvm.exe --jdkhome $env:JAVA_HOME --console suppress
+  ```
+
+- Open [Eclipse Memory Analyzer tool](https://www.eclipse.org/mat/) and load the heap dump file
+
+  ```ps1
+  & $env:MAT_HOME\eclipsec.exe
+  ```

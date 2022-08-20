@@ -6,6 +6,9 @@
         },
         "IntroGarbageCollection": {
             "script-ref": "IntroGarbageCollection.java"
+        },
+        "MemoryLeak": {
+            "script-ref": "MemoryLeak.java"
         }
     },
     "templates": {}
