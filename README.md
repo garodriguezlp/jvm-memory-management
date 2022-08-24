@@ -33,26 +33,43 @@ use `--open=code` instead
 ## Intro into GC
 
 > If you want to know what's `jbang` doing under the hood, you can use the `--verbose` flag
+>
+> Other java versions could be chosen by using the `--java` flag. Example: `--java 11`. See [jbang
+docs](https://www.jbang.dev/documentation/guide/latest/javaversions.html)
 
 - Running it with Java 8
 
   ```ps1
-  jbang run --java 8 IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  jbang run `
+    --java 8 `
+    --java-options='-verbose:gc' `
+    IntroGarbageCollection@garodriguezlp/jvm-memory-management
   ```
 
-- Running it with Java 8 limiting max heap
+- Running it with Java 8 limiting max heap, then run it with `--java 11` and see the difference after the last GC. The thing here
+is that GC in Java 11 is capable of giving back memory to the OS
 
   ```ps1
-  jbang run --java 8 --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  jbang run `
+    --java 8 `
+    --java-options='-verbose:gc' `
+    --java-options='-Xmx127m' `
+    IntroGarbageCollection@garodriguezlp/jvm-memory-management
   ```
 
 - Running it with Java 8 limiting max and min heap
 
   ```ps1
-  jbang run --java 8 --java-options='-Xms127m' --java-options='-Xmx127m' IntroGarbageCollection@garodriguezlp/jvm-memory-management
+  jbang run `
+    --java 8 `
+    --java-options='-verbose:gc' `
+    --java-options='-Xms127m' `
+    --java-options='-Xmx127m' `
+    IntroGarbageCollection@garodriguezlp/jvm-memory-management
   ```
 
 - Running `visualvm` could be executed like this if `$JAVA_HOME` and `$VISUALVM_HOME` environment variables are properly set
+(install the [Visual GC plugin](https://visualvm.github.io/plugins.html) first)
 
   ```ps1
   & $env:VISUALVM_HOME\bin\visualvm.exe --jdkhome $env:JAVA_HOME --console suppress
@@ -63,10 +80,16 @@ use `--open=code` instead
 - Run the following `jbang` powered class
 
   ```ps1
-  jbang run --java 11 --java-options='-Xmx256m' --java-options='-XX:+HeapDumpOnOutOfMemoryError' MemoryLeak@garodriguezlp/jvm-memory-management
+  jbang run `
+    --java 11 `
+    --java-options='-verbose:gc' `
+    --java-options='-Xmx256m' `
+    --java-options='-XX:+HeapDumpOnOutOfMemoryError' `
+    MemoryLeak@garodriguezlp/jvm-memory-management
   ```
 
-- Open `visualvm` and connect to the process
+- Open `visualvm` and connect to the process (don't forget to install the [Visual GC
+plugin](https://visualvm.github.io/plugins.html))
 
   ```ps1
   & $env:VISUALVM_HOME\bin\visualvm.exe --jdkhome $env:JAVA_HOME --console suppress

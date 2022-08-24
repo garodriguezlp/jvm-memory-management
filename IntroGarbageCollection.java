@@ -37,7 +37,7 @@ class IntroGarbageCollection implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
 
-        out.println("free memory at start: " + getFreeMemoryInMegabytes() + "M");
+        out.println("-------------------> free memory at start: " + getFreeMemoryInMegabytes() + "M");
 
         for (int i = 0; i < iterations; i++) {
 
@@ -49,7 +49,7 @@ class IntroGarbageCollection implements Callable<Integer> {
                     .collect(toList());
 
             // print the free memory
-            out.println("free memory after creating [" + randomNumber + "] objects: " + getFreeMemoryInMegabytes() + "M");
+            out.println("-------------------> free memory after creating [" + randomNumber + "] objects: " + getFreeMemoryInMegabytes() + "M");
 
             // sleep for the pause time
             Thread.sleep(pause);
@@ -58,7 +58,7 @@ class IntroGarbageCollection implements Callable<Integer> {
         // Please, never do this in production code!
         System.gc();
 
-        out.println("free memory after gc: " + getFreeMemoryInMegabytes() + "M");
+        out.println("-------------------> free memory after gc: " + getFreeMemoryInMegabytes() + "M");
 
         return 0;
     }
